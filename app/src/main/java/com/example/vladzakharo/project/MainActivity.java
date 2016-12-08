@@ -1,5 +1,6 @@
 package com.example.vladzakharo.project;
 
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (mTitle.length() == 0 || mMessage.length() == 0){
                     Snackbar.make(findViewById(R.id.activity_main), R.string.snackbar_warning, Snackbar.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(MainActivity.this, ActivityFragments.class);
+                    startActivity(intent);
                 }
             }
         });
