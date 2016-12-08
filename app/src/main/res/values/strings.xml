@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Project</string>
+    <string name="hint">Title</string>
+    <string name="check_box_text">Invert fragment order</string>
+    <string name="button_text">Send</string>
+    <string-array name="fruit_array">
+        <item>Apple</item>
+        <item>Banana</item>
+        <item>Pineapple</item>
+        <item>Cherry</item>
+        <item>Kiwi</item>
+    </string-array>
+    <string name="snackbar_warning">Not all fields a field</string>
 </resources>
