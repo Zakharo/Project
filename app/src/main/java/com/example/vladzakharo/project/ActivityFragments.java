@@ -8,36 +8,38 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class ActivityFragments extends AppCompatActivity {
 
-    FragmentOne mFragmentOne;
-    FragmentTwo mFragmentTwo;
     FragmentManager fm;
+
+    private String mTitle;
+    private String mMessage;
+    private String mFruit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragments);
 
-        //mFragmentOne = new FragmentOne();
-        //mFragmentTwo = new FragmentTwo();
+        mTitle = getIntent().getStringExtra("title");
+        mMessage = getIntent().getStringExtra("message");
+        mFruit = getIntent().getStringExtra("fruit");
+
 
         fm = getSupportFragmentManager();
-
         Fragment fragmentOne = fm.findFragmentById(R.id.fragmentF1);
         if(fragmentOne == null){
-            fragmentOne = new FragmentOne();
             fm.beginTransaction()
-                    .add(R.id.fragmentF1, fragmentOne)
+                    .add(R.id.fragmentF1, FragmentOne.newInstance(mMessage))
                     .commit();
         }
 
         Fragment fragmentTwo = fm.findFragmentById(R.id.fragmentF2);
         if(fragmentTwo == null){
-            fragmentTwo = new FragmentTwo();
             fm.beginTransaction()
-                    .add(R.id.fragmentF2, fragmentTwo)
+                    .add(R.id.fragmentF2, FragmentTwo.newInstance(mFruit))
                     .commit();
         }
     }

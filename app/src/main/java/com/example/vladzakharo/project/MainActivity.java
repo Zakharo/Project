@@ -1,10 +1,12 @@
 package com.example.vladzakharo.project;
 
 import android.content.Intent;
+import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,6 +21,13 @@ public class MainActivity extends AppCompatActivity {
     private Spinner mSpinner;
     private CheckBox mCheckBox;
     private Button mButton;
+
+    private static final String TITLE = "title";
+    private static final String MESSAGE = "message";
+    private static final String FRUIT = "fruit";
+
+    private String mFruit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
                     Snackbar.make(findViewById(R.id.activity_main), R.string.snackbar_warning, Snackbar.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent(MainActivity.this, ActivityFragments.class);
+                    intent.putExtra(TITLE, mTitle.getText().toString());
+                    intent.putExtra(MESSAGE, mMessage.getText().toString());
+                    intent.putExtra(FRUIT, mSpinner.getSelectedItem().toString());
                     startActivity(intent);
                 }
             }
