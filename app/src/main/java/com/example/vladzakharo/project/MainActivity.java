@@ -5,6 +5,8 @@ import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String MESSAGE = "message";
     private static final String FRUIT = "fruit";
 
-    private String mFruit;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,19 @@ public class MainActivity extends AppCompatActivity {
         mSpinner = (Spinner) findViewById(R.id.spinner);
         mCheckBox = (CheckBox) findViewById(R.id.checkBox);
         mButton = (Button) findViewById(R.id.button_send);
+
+        String spinnerValue = getIntent().getStringExtra("spinner");
+        
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.fruit_array,
+                android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(adapter);
+
+        mTitle.setText(getIntent().getStringExtra("title"));
+        mMessage.setText(getIntent().getStringExtra("message"));
+        int spinnerPosition = adapter.getPosition(spinnerValue);
+        mSpinner.setSelection(spinnerPosition);
+
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,4 +69,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_item_quit:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

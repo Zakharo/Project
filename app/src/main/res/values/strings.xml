@@ -11,4 +11,5 @@
         <item>Kiwi</item>
     </string-array>
     <string name="snackbar_warning">Not all fields a field</string>
+    <string name="quit">Quit</string>
 </resources>
