@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Проект</string>
+    <string name="hint">Титул</string>
+    <string name="check_box_text">Инвертировать порядок фрагментов</string>
+    <string name="button_text">Отправить</string>
+    <string-array name="fruit_array">
+        <item>Яблоко</item>
+        <item>Банан</item>
+        <item>Ананас</item>
+        <item>Вишня</item>
+        <item>Киви</item>
+    </string-array>
+    <string name="snackbar_warning">Не все поля заполнены</string>
+    <string name="quit">Выйти</string>
+</resources>

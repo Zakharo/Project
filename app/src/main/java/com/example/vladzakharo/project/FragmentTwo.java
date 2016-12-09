@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -61,6 +60,21 @@ public class FragmentTwo extends Fragment {
                 mFruitImageView.setImageResource(R.drawable.cherry);
                 break;
             case "Kiwi":
+                mFruitImageView.setImageResource(R.drawable.kiwi);
+                break;
+            case "Яблоко":
+                mFruitImageView.setImageResource(R.drawable.apple);
+                break;
+            case "Банан":
+                mFruitImageView.setImageResource(R.drawable.banana);
+                break;
+            case "Ананас":
+                mFruitImageView.setImageResource(R.drawable.pineapple);
+                break;
+            case "Вишня":
+                mFruitImageView.setImageResource(R.drawable.cherry);
+                break;
+            case "Киви":
                 mFruitImageView.setImageResource(R.drawable.kiwi);
                 break;
         }

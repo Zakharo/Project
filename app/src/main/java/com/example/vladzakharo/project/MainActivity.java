@@ -1,18 +1,15 @@
 package com.example.vladzakharo.project;
 
 import android.content.Intent;
-import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Checkable;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -27,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TITLE = "title";
     private static final String MESSAGE = "message";
     private static final String FRUIT = "fruit";
+    private static final String CHECK = "check";
 
 
     @Override
@@ -41,12 +39,16 @@ public class MainActivity extends AppCompatActivity {
         mButton = (Button) findViewById(R.id.button_send);
 
         String spinnerValue = getIntent().getStringExtra("spinner");
-        
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.fruit_array,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setAdapter(adapter);
 
+        boolean savedCheck = getIntent().getBooleanExtra("check", false);
+        if (savedCheck){
+            mCheckBox.setChecked(savedCheck);
+        }
         mTitle.setText(getIntent().getStringExtra("title"));
         mMessage.setText(getIntent().getStringExtra("message"));
         int spinnerPosition = adapter.getPosition(spinnerValue);
@@ -59,7 +61,10 @@ public class MainActivity extends AppCompatActivity {
                 if (mTitle.length() == 0 || mMessage.length() == 0){
                     Snackbar.make(findViewById(R.id.activity_main), R.string.snackbar_warning, Snackbar.LENGTH_SHORT).show();
                 }else{
+                    boolean isCheck = mCheckBox.isChecked();
+
                     Intent intent = new Intent(MainActivity.this, ActivityFragments.class);
+                    intent.putExtra(CHECK, isCheck);
                     intent.putExtra(TITLE, mTitle.getText().toString());
                     intent.putExtra(MESSAGE, mMessage.getText().toString());
                     intent.putExtra(FRUIT, mSpinner.getSelectedItem().toString());
