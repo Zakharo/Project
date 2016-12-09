@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Проект</string>
-    <string name="hint">Титул</string>
-    <string name="check_box_text">Инвертировать порядок фрагментов</string>
-    <string name="button_text">Отправить</string>
+    <string name="app_name">РџСЂРѕРµРєС‚</string>
+    <string name="hint">Р—Р°РіР»Р°РІРёРµ</string>
+    <string name="check_box_text">РРЅРІРµСЂС‚РёСЂРѕРІР°С‚СЊ РїРѕСЂСЏРґРѕРє С„СЂР°РіРјРµРЅС‚РѕРІ</string>
+    <string name="button_text">РћС‚РїСЂР°РІРёС‚СЊ</string>
     <string-array name="fruit_array">
-        <item>Яблоко</item>
-        <item>Банан</item>
-        <item>Ананас</item>
-        <item>Вишня</item>
-        <item>Киви</item>
+        <item>РЇР±Р»РѕРєРѕ</item>
+        <item>Р‘Р°РЅР°РЅ</item>
+        <item>РђРЅР°РЅР°СЃ</item>
+        <item>Р’РёС€РЅСЏ</item>
+        <item>РљРёРІРё</item>
     </string-array>
-    <string name="snackbar_warning">Не все поля заполнены</string>
-    <string name="quit">Выйти</string>
+    <string name="snackbar_warning">РќРµ РІСЃРµ РїРѕР»СЏ Р·Р°РїРѕР»РЅРµРЅС‹</string>
+    <string name="quit">Р’С‹Р№С‚Рё</string>
 </resources>
