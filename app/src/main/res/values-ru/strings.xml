@@ -4,12 +4,17 @@
     <string name="hint">Заглавие</string>
     <string name="check_box_text">Инвертировать порядок фрагментов</string>
     <string name="button_text">Отправить</string>
+    <string name="apple">Яблоко</string>
+    <string name="banana">Банан</string>
+    <string name="pineapple">Ананас</string>
+    <string name="cherry">Виншя</string>
+    <string name="kiwi">Киви</string>
     <string-array name="fruit_array">
-        <item>Яблоко</item>
-        <item>Банан</item>
-        <item>Ананас</item>
-        <item>Вишня</item>
-        <item>Киви</item>
+        <item>@string/apple</item>
+        <item>@string/banana</item>
+        <item>@string/pineapple</item>
+        <item>@string/cherry</item>
+        <item>@string/kiwi</item>
     </string-array>
     <string name="snackbar_warning">Не все поля заполнены</string>
     <string name="quit">Выйти</string>

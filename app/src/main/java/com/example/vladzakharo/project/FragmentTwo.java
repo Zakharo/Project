@@ -15,15 +15,19 @@ import android.widget.TextView;
 
 public class FragmentTwo extends Fragment {
 
-    private static final String ARG_FRUIT = "arg_fruit";
+    private static final String ARG_NAME_RES_ID = "nri";
+    private static final String ARG_DRAWABLE_RES_ID = "dri";
 
     private ImageView mFruitImageView;
     private TextView mFruit;
-    private String mTextOfFruit;
 
-    public static FragmentTwo newInstance(String fruit){
+    private int mNameResId;
+    private int mDrawableResId;
+
+    public static FragmentTwo newInstance(int nameResId, int drawableResId){
         Bundle args = new Bundle();
-        args.putString(ARG_FRUIT, fruit);
+        args.putInt(ARG_NAME_RES_ID, nameResId);
+        args.putInt(ARG_DRAWABLE_RES_ID, drawableResId);
 
         FragmentTwo fragment = new FragmentTwo();
         fragment.setArguments(args);
@@ -35,7 +39,8 @@ public class FragmentTwo extends Fragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
 
-        mTextOfFruit = getArguments().getString(ARG_FRUIT);
+        mNameResId = getArguments().getInt(ARG_NAME_RES_ID);
+        mDrawableResId = getArguments().getInt(ARG_DRAWABLE_RES_ID);
     }
 
     @Nullable
@@ -44,40 +49,9 @@ public class FragmentTwo extends Fragment {
         View v = inflater.inflate(R.layout.fragment_two, container, false);
         mFruitImageView = (ImageView)v.findViewById(R.id.imageViewFruit);
         mFruit = (TextView)v.findViewById(R.id.textViewFruit);
-        mFruit.setText(mTextOfFruit);
 
-        switch (mTextOfFruit){
-            case "Apple":
-                mFruitImageView.setImageResource(R.drawable.apple);
-                break;
-            case "Banana":
-                mFruitImageView.setImageResource(R.drawable.banana);
-                break;
-            case "Pineapple":
-                mFruitImageView.setImageResource(R.drawable.pineapple);
-                break;
-            case "Cherry":
-                mFruitImageView.setImageResource(R.drawable.cherry);
-                break;
-            case "Kiwi":
-                mFruitImageView.setImageResource(R.drawable.kiwi);
-                break;
-            case "Яблоко":
-                mFruitImageView.setImageResource(R.drawable.apple);
-                break;
-            case "Банан":
-                mFruitImageView.setImageResource(R.drawable.banana);
-                break;
-            case "Ананас":
-                mFruitImageView.setImageResource(R.drawable.pineapple);
-                break;
-            case "Вишня":
-                mFruitImageView.setImageResource(R.drawable.cherry);
-                break;
-            case "Киви":
-                mFruitImageView.setImageResource(R.drawable.kiwi);
-                break;
-        }
+        mFruit.setText(getString(mNameResId));
+        mFruitImageView.setImageResource(mDrawableResId);
         return v;
     }
 }

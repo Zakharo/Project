@@ -14,13 +14,12 @@ public class ActivityFragments extends AppCompatActivity {
 
     private String mTitle;
     private String mMessage;
-    private String mFruit;
     private boolean isCheck;
 
-    private static final String TITLE = "title";
-    private static final String MESSAGE = "message";
-    private static final String SPINNER = "spinner";
-    private static final String CHECK = "check";
+    private Fruit fruit;
+
+    Fragment fragmentOne;
+    Fragment fragmentTwo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,61 +28,54 @@ public class ActivityFragments extends AppCompatActivity {
 
         mTitle = getIntent().getStringExtra("title");
         mMessage = getIntent().getStringExtra("message");
-        mFruit = getIntent().getStringExtra("fruit");
         isCheck = getIntent().getExtras().getBoolean("check");
+
+        fruit = (Fruit)getIntent().getSerializableExtra("fruit");
 
         getSupportActionBar().setTitle(mTitle);
 
+        fm = getSupportFragmentManager();
+        fragmentOne = fm.findFragmentById(R.id.fragmentF1);
+        fragmentTwo = fm.findFragmentById(R.id.fragmentF2);
+
         if (isCheck){
-            fm = getSupportFragmentManager();
-            Fragment fragmentOne = fm.findFragmentById(R.id.fragmentF1);
-            if(fragmentOne == null){
-                fm.beginTransaction()
-                        .add(R.id.fragmentF1, FragmentTwo.newInstance(mMessage))
-                        .commit();
-            }
-
-            Fragment fragmentTwo = fm.findFragmentById(R.id.fragmentF2);
-            if(fragmentTwo == null){
-                fm.beginTransaction()
-                        .add(R.id.fragmentF2, FragmentOne.newInstance(mFruit))
-                        .commit();
-            }
+            firstFragmentDown();
         }else{
-            fm = getSupportFragmentManager();
-            Fragment fragmentOne = fm.findFragmentById(R.id.fragmentF1);
-            if(fragmentOne == null){
-                fm.beginTransaction()
-                        .add(R.id.fragmentF1, FragmentOne.newInstance(mMessage))
-                        .commit();
-            }
-
-            Fragment fragmentTwo = fm.findFragmentById(R.id.fragmentF2);
-            if(fragmentTwo == null){
-                fm.beginTransaction()
-                        .add(R.id.fragmentF2, FragmentTwo.newInstance(mFruit))
-                        .commit();
-            }
+            firstFragmentUp();
         }
+
+    }
+
+    private void firstFragmentDown(){
+        fm.beginTransaction()
+                .replace(R.id.fragmentF1, FragmentTwo.newInstance(fruit.getNameResId(), fruit.getDrawableResId()))
+                .commit();
+        fm.beginTransaction()
+                .replace(R.id.fragmentF2, FragmentOne.newInstance(mMessage))
+                .commit();
+    }
+
+    private void firstFragmentUp() {
+        fm.beginTransaction()
+                .replace(R.id.fragmentF1, FragmentOne.newInstance(mMessage))
+                .commit();
+        fm.beginTransaction()
+                .replace(R.id.fragmentF2, FragmentTwo.newInstance(fruit.getNameResId(), fruit.getDrawableResId()))
+                .commit();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home){
-            Intent intent = new Intent(ActivityFragments.this, MainActivity.class);
-            intent.putExtra(CHECK, isCheck);
-            intent.putExtra(TITLE, mTitle);
-            intent.putExtra(MESSAGE, mMessage);
-            intent.putExtra(SPINNER, mFruit);
-            startActivity(intent);
+            setResult(RESULT_OK);
+            finish();
         }
         return true;
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(ActivityFragments.this, MainActivity.class);
-        startActivity(intent);
-        super.onBackPressed();
+        setResult(RESULT_CANCELED);
+        finish();
     }
 }

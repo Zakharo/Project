@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String FRUIT = "fruit";
     private static final String CHECK = "check";
 
+    private static final int REQUEST_CODE = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,22 +39,10 @@ public class MainActivity extends AppCompatActivity {
         mCheckBox = (CheckBox) findViewById(R.id.checkBox);
         mButton = (Button) findViewById(R.id.button_send);
 
-        String spinnerValue = getIntent().getStringExtra("spinner");
-
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.fruit_array,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setAdapter(adapter);
-
-        boolean savedCheck = getIntent().getBooleanExtra("check", false);
-        if (savedCheck){
-            mCheckBox.setChecked(savedCheck);
-        }
-        mTitle.setText(getIntent().getStringExtra("title"));
-        mMessage.setText(getIntent().getStringExtra("message"));
-        int spinnerPosition = adapter.getPosition(spinnerValue);
-        mSpinner.setSelection(spinnerPosition);
-
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,16 +52,29 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     boolean isCheck = mCheckBox.isChecked();
 
-                    Intent intent = new Intent(MainActivity.this, ActivityFragments.class);
+                    Intent intent = new Intent(v.getContext(), ActivityFragments.class);
                     intent.putExtra(CHECK, isCheck);
                     intent.putExtra(TITLE, mTitle.getText().toString());
                     intent.putExtra(MESSAGE, mMessage.getText().toString());
-                    intent.putExtra(FRUIT, mSpinner.getSelectedItem().toString());
-                    startActivity(intent);
+                    intent.putExtra(FRUIT, Fruit.values()[mSpinner.getSelectedItemPosition()]);
+                    startActivityForResult(intent, REQUEST_CODE);
                 }
             }
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE){
+            if (resultCode == RESULT_CANCELED){
+                mTitle.getText().clear();
+                mMessage.getText().clear();
+                mSpinner.setSelection(0);
+                mCheckBox.setChecked(false);
+            }
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

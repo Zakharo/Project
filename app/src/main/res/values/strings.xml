@@ -4,12 +4,17 @@
     <string name="hint">Title</string>
     <string name="check_box_text">Invert fragment order</string>
     <string name="button_text">Send</string>
+    <string name="apple">Apple</string>
+    <string name="banana">Banana</string>
+    <string name="pineapple">Pineapple</string>
+    <string name="cherry">Cherry</string>
+    <string name="kiwi">Kiwi</string>
     <string-array name="fruit_array">
-        <item>Apple</item>
-        <item>Banana</item>
-        <item>Pineapple</item>
-        <item>Cherry</item>
-        <item>Kiwi</item>
+        <item>@string/apple</item>
+        <item>@string/banana</item>
+        <item>@string/pineapple</item>
+        <item>@string/cherry</item>
+        <item>@string/kiwi</item>
     </string-array>
     <string name="snackbar_warning">Not all fields a field</string>
     <string name="quit">Quit</string>
