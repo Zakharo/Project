@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox mCheckBox;
     private Button mButton;
 
-    private static final String TITLE = "title";
-    private static final String MESSAGE = "message";
-    private static final String FRUIT = "fruit";
-    private static final String CHECK = "check";
+    public static final String TITLE = "title";
+    public static final String MESSAGE = "message";
+    public static final String FRUIT = "fruit";
+    public static final String CHECK = "check";
 
     private static final int REQUEST_CODE = 123;
 
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mTitle.length() == 0 || mMessage.length() == 0){
+                if (TextUtils.isEmpty(mTitle.getText()) || TextUtils.isEmpty(mMessage.getText())){
                     Snackbar.make(findViewById(R.id.activity_main), R.string.snackbar_warning, Snackbar.LENGTH_SHORT).show();
                 }else{
                     boolean isCheck = mCheckBox.isChecked();

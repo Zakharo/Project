@@ -26,13 +26,13 @@ public class ActivityFragments extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragments);
 
-        mTitle = getIntent().getStringExtra("title");
-        mMessage = getIntent().getStringExtra("message");
-        isCheck = getIntent().getExtras().getBoolean("check");
-
-        fruit = (Fruit)getIntent().getSerializableExtra("fruit");
-
-        getSupportActionBar().setTitle(mTitle);
+        if(getIntent() != null){
+            mTitle = getIntent().getStringExtra(MainActivity.TITLE);
+            mMessage = getIntent().getStringExtra(MainActivity.MESSAGE);
+            isCheck = getIntent().getExtras().getBoolean(MainActivity.CHECK);
+            fruit = (Fruit)getIntent().getSerializableExtra(MainActivity.FRUIT);
+            getSupportActionBar().setTitle(mTitle);
+        }
 
         fm = getSupportFragmentManager();
         fragmentOne = fm.findFragmentById(R.id.fragmentF1);
